@@ -1,0 +1,77 @@
+version: "3.1"
+rules:
+  # - rule: handoff intent from other bot's handoff triggers greeting
+  #   steps:
+  #   - intent: handoff
+  #   - action: utter_greet
+
+  - rule: ask the user to rephrase whenever they send a message with low NLU confidence
+    steps:
+    - intent: nlu_fallback
+    - action: utter_default
+
+  - rule: answer bot challenge
+    steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
+
+  - rule: tell the time
+    steps:
+    - intent: inquire_time
+    - action: action_tell_time
+
+  - rule: remember where I live
+    steps:
+    - intent: where_i_live
+    - action: action_remember_where
+
+  - rule: tell time difference
+    steps:
+    - intent: inquire_time_difference
+    - action: action_time_difference
+
+  - rule: you're welcome
+    steps:
+    - intent: thank
+    - action: utter_welcome
+
+  - rule: program deadline
+    steps:
+    - intent: inquire_program_deadline
+    - action: utter_deadline
+
+  - rule: list eligibility criteria
+    steps:
+    - intent: inquire_eligibility
+    - actions: utter_eligibility
+
+  # - rule: start open incident form
+  #   steps:
+  #   - or:
+  #     - intent: open_incident
+  #     - intent: password_reset
+  #     - intent: problem_email
+  #   - action: open_incident_form
+  #   - active_loop: open_incident_form
+
+  # - rule: submit open incident form
+  #   condition:
+  #     - active_loop: open_incident_form
+  #   steps:
+  #   - action: open_incident_form
+  #   - active_loop: null
+  #   - action: action_open_incident
+
+  # - rule: start incident status form
+  #   steps:
+  #   - intent: incident_status
+  #   - action: incident_status_form
+  #   - active_loop: incident_status_form
+
+  # - rule: submit incident status form
+  #   condition:
+  #     - active_loop: incident_status_form
+  #   steps:
+  #   - action: incident_status_form
+  #   - active_loop: null
+  #   - action: action_check_incident_status
